@@ -10,18 +10,21 @@ def consume(topic, config):
 
     try:
         while True:
-            msg = consumer.poll(1.0)  # Wait for message or timeout
+            msg = consumer.poll(1.0)  
             
-            if msg is not None and msg.error() is None:
-                key = msg.key().decode("utf-8")
-                value = msg.value().decode("utf-8")
-                print(f"Consumed message from topic {topic}: key = {key:12} value = {value:12}")
-            elif msg.error():
+            if msg is None:
+                continue  
+            
+            if msg.error():
                 if msg.error().code() == KafkaError._PARTITION_EOF:
-                    continue  # End of partition event
+                    continue 
                 else:
                     print(f"Consumer error: {msg.error()}")
                     break
+            
+            key = msg.key().decode("utf-8")
+            value = msg.value().decode("utf-8")
+            print(f"Consumed message from topic {topic}: key = {key:12} value = {value:12}")
     
     finally:
         consumer.close()
