@@ -1,18 +1,27 @@
 import subprocess
 import time
+import os, sys
+# Ensure the src directory is added to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
-def run_producer():
+def runProducer():
     print("Starting the producer...")
-    subprocess.run(["python", "src/producer/open_close_producer.py"])
+    subprocess.run(
+    [sys.executable, "-m", "producer.open_close_producer"],
+    cwd="src",
+    )
 
-def run_consumer():
+def runConsumer():
     print("Starting the consumer...")
-    subprocess.run(["python", "src/consumer/open_close_consumer.py"])
+    subprocess.run(
+    [sys.executable, "-m", "consumer.open_close_consumer"],
+    cwd="src",
+    )
 
 def main():
-    run_producer()
-    time.sleep(1)  
-    run_consumer()
+    runProducer()
+    time.sleep(5)  
+    runConsumer()
 
 if __name__ == "__main__":
     main()
