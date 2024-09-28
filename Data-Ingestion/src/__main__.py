@@ -1,8 +1,6 @@
 import subprocess
 import time
-import os, sys
-# Ensure the src directory is added to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+import sys
 
 def runProducer():
     print("Starting the producer...")
