@@ -1,6 +1,5 @@
 from confluent_kafka import Consumer, KafkaError
 from datetime import datetime
-
 from kafka_config import read_config
 
 def consume(topic, config):

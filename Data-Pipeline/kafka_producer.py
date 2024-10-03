@@ -7,7 +7,6 @@ from confluent_kafka import Producer
 from google.cloud import bigquery
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-
 from kafka_config import read_config 
 
 def fetch_from_bigquery(table_name):
